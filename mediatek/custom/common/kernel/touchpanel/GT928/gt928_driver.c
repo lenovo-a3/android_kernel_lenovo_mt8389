@@ -1412,6 +1412,20 @@ static int tpd_local_init(void)
 		TPD_DEBUG("Factory mode is detected! \n");		
 		memcpy(tpd_calmat_driver, tpd_def_calmat_local_factory, sizeof(tpd_calmat_driver));	    
 	}
+#ifdef TPD_CALIBRATION_MATRIX_ROTATION_PORTRAIT
+	else if ( RECOVERY_BOOT != get_boot_mode() )
+	{
+		/* Android rotates the landscape panel itself (ro.sf.hwrotation), so report portrait. */
+		static int tpd_def_calmat_local_portrait[8] = TPD_CALIBRATION_MATRIX_ROTATION_PORTRAIT;
+		int res_x = TPD_RES_X;
+
+		TPD_DEBUG("Normal mode is detected, portrait coordinates\n");
+		memcpy(tpd_calmat_driver, tpd_def_calmat_local_portrait, sizeof(tpd_calmat_driver));
+		/* tpd_probe() registers the abs ranges from these after tpd_local_init() */
+		TPD_RES_X = TPD_RES_Y;
+		TPD_RES_Y = res_x;
+	}
+#endif
 	else
 	{
 		TPD_DEBUG("Normal mode is detected! \n");

@@ -275,6 +275,13 @@ a sample config, send this config should cause the chip cannot work normally*/
 #define TPD_CALIBRATION_MATRIX_ROTATION_NORMAL  {0, -1031, 4210829, -607, 0, 2474203, 0, 0};
 #endif
 #define TPD_CALIBRATION_MATRIX_ROTATION_FACTORY {599, 0, 0, 0, -1023, 4190208, 0, 0};
+/*
+ * Portrait coordinates (0..599 x 0..1023) for a framework that runs with
+ * ro.sf.hwrotation=270: the NORMAL matrix's calibration rotated by 90 degrees
+ * (x' = 600 - y_normal, y' = x_normal). Used in normal boot instead of NORMAL;
+ * the driver then also swaps TPD_RES_X/Y so the input ranges are 600x1024.
+ */
+#define TPD_CALIBRATION_MATRIX_ROTATION_PORTRAIT {607, 0, -16603, 0, -1031, 4210829, 0, 0};
 
 
 #define TPD_RESET_ISSUE_WORKAROUND
