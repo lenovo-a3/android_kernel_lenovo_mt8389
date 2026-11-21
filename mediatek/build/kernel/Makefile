@@ -122,7 +122,7 @@ LINUXINCLUDE += -I$(MTK_ROOT_CUSTOM_OUT)/common
 #$(foreach p,$(strip $(addprefix -I$(MTK_ROOT_CUSTOM_OUT)/hal/,$(_module_inc_hal))),$(info --> $(p)))
 
 generated_files := $(call mtk.config.generate-rules)
-.config mediatek-configs: $(MTK_ROOT_GEN_CONFIG)/kconfig $(MTK_ROOT_GEN_CONFIG)
+mediatek-configs: $(MTK_ROOT_GEN_CONFIG)/kconfig $(MTK_ROOT_GEN_CONFIG)
 	@echo "[COPY] $< --> $@"
 	@cp $< $@
 	@echo "[COPY] $< --> .config"
