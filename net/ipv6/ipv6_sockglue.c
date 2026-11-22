@@ -450,6 +450,7 @@ sticky_done:
 		memset(&fl6, 0, sizeof(fl6));
 		fl6.flowi6_oif = sk->sk_bound_dev_if;
 		fl6.flowi6_mark = sk->sk_mark;
+		fl6.flowi6_uid = sock_i_uid(sk);
 
 		if (optlen == 0)
 			goto update;
